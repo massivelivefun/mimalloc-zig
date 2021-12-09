@@ -23,6 +23,13 @@ const mi_page_kind_e = enum {
     mi_page_huge,
 };
 
+pub const mi_random_ctx_t = mi_random_ctx_s;
+const mi_random_ctx_s = struct {
+    input: [16]u32,
+    output: [16]u32,
+    output_available: c_int,
+}
+
 pub const mi_stat_count_t = mi_stat_count_s;
 const mi_stat_count_s = struct {
     allocated: isize,
