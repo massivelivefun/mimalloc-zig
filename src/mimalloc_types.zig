@@ -162,7 +162,7 @@ const mi_random_ctx_s = struct {
     input: [16]u32,
     output: [16]u32,
     output_available: c_int,
-}
+};
 
 // start: there's a bunch of build stuff that needs to happen for this type
 pub const mi_padding_t = mi_padding_s;
