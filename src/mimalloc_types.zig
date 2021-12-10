@@ -112,6 +112,14 @@ const mi_page_s = struct {
     prev: [*]mi_page_s,
 };
 
+pub const mi_page_kind_t = mi_page_kind_e;
+const mi_page_kind_e = enum {
+    mi_page_small,
+    mi_page_medium,
+    mi_page_large,
+    mi_page_huge,
+};
+
 pub const mi_segment_t = mi_segment_s;
 const mi_segment_s = struct {
     // memory fields
@@ -138,14 +146,6 @@ const mi_segment_s = struct {
     thread_id: usize, // type needs to be _Atomic
     page_kind: mi_page_kind_t,
     pages: [1]mi_page_t,
-};
-
-pub const mi_page_kind_t = mi_page_kind_e;
-const mi_page_kind_e = enum {
-    mi_page_small,
-    mi_page_medium,
-    mi_page_large,
-    mi_page_huge,
 };
 
 pub const mi_random_ctx_t = mi_random_ctx_s;
