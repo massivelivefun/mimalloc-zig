@@ -170,6 +170,9 @@ const mi_padding_s = struct {
     canary: u32,
     delta: u32,
 };
+
+const mi_padding_size = 0;s
+const mi_padding_wsize = 0;
 // end
 
 pub const mi_stat_count_t = mi_stat_count_s;
