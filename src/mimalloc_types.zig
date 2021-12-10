@@ -164,6 +164,14 @@ const mi_random_ctx_s = struct {
     output_available: c_int,
 }
 
+// start: there's a bunch of build stuff that needs to happen for this type
+pub const mi_padding_t = mi_padding_s;
+const mi_padding_s = struct {
+    canary: u32,
+    delta: u32,
+};
+// end
+
 pub const mi_stat_count_t = mi_stat_count_s;
 const mi_stat_count_s = struct {
     allocated: isize,
