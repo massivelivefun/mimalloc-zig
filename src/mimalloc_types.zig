@@ -175,6 +175,25 @@ const mi_padding_size = 0;s
 const mi_padding_wsize = 0;
 // end
 
+const mi_pages_direct = mi_small_wsize_max + mi_padding_wsize + 1;
+
+pub const mi_heap_t = mi_heap_s;
+const mi_heap_s = struct {
+    tld: *mi_tld_t,
+    page: [mi_pages_direct]*mi_page_t,
+    mi_page_queue: [mi_bin_full + 1]mi_page_queue_t,
+    thread_delayed_free: *mi_block_t,
+    thread_id: usize,
+    cookie: usize,
+    keys: [2]usize,
+    random: mi_random_ctx_t,
+    page_count: usize,
+    page_retired_min: usize,
+    page_retired_max: usize,
+    next: *mi_heap_t,
+    no_reclaim: bool,
+};
+
 pub const mi_stat_count_t = mi_stat_count_s;
 const mi_stat_count_s = struct {
     allocated: isize,
