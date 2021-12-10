@@ -171,7 +171,7 @@ const mi_padding_s = struct {
     delta: u32,
 };
 
-const mi_padding_size = 0;s
+const mi_padding_size = 0;
 const mi_padding_wsize = 0;
 // end
 
