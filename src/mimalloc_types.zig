@@ -155,6 +155,8 @@ const mi_page_queue_s = struct {
     block_size: usize,
 };
 
+const mi_bin_full = mi_bin_huge + 1;
+
 pub const mi_random_ctx_t = mi_random_ctx_s;
 const mi_random_ctx_s = struct {
     input: [16]u32,
