@@ -112,6 +112,34 @@ const mi_page_s = struct {
     prev: [*]mi_page_s,
 };
 
+pub const mi_segment_t = mi_segment_s;
+const mi_segment_s = struct {
+    // memory fields
+    memid: usize,
+    mem_is_pinned: bool,
+    mem_is_committed: bool,
+
+    // segment fields
+    abandoned_next: [*]mi_segment_s, // type needs to be _Atomic
+    next: [*]mi_segment_s,
+    prev: [*]mi_segment_s,
+
+    abandoned: usize,
+    abandoned_visits: usize,
+
+    used: usize,
+    capacity: usize,
+    segment_size: usize,
+    segment_info_size: usize,
+    cookie: usize,
+
+    // layout like this to optimize access in `mi_free`
+    page_shift: usize,
+    thread_id: usize, // type needs to be _Atomic
+    page_kind: mi_page_kind_t,
+    pages: [1]mi_page_t,
+};
+
 pub const mi_page_kind_t = mi_page_kind_e;
 const mi_page_kind_e = enum {
     mi_page_small,
