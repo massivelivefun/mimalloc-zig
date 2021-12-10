@@ -1,3 +1,57 @@
+// start: This needs to be tied into the build.zig mechanisms
+
+pub var mi_max_align_size = 16;
+
+pub var mi_secure = 0;
+
+pub var mi_debug = 0;
+
+pub var mi_padding = 1;
+
+pub var mi_encode_freelist = 1;
+
+pub var mi_intptr_shift = 3;
+
+pub var mi_intptr_size = 1 << mi_intptr_shift;
+
+pub var mi_intptr_bits = mi_intptr_size * 8;
+
+pub const KiB = @as(usize, 1024);
+pub const MiB = KiB * KiB;
+pub const GiB = MiB * KiB;
+
+pub var mi_small_page_shift = 13 + mi_intptr_shift;
+pub var mi_medium_page_shift = 3 + mi_small_page_shift;
+pub var mi_large_page_shift = 3 + mi_medium_page_shift;
+pub var mi_segment_shift = mi_large_page_shift;
+
+pub var mi_segment_size = @as(usize, 1) << mi_segment_shift;
+pub var mi_segment_mask = @as(usize, mi_segment_size - 1);
+
+pub var mi_small_page_size = @as(usize, 1) << mi_small_page_shift;
+pub var mi_medium_page_size = @as(usize, 1) << mi_medium_page_shift;
+pub var mi_large_page_size = @as(usize, 1) << mi_large_page_shift;
+
+pub var mi_small_pages_per_segment = mi_segment_size / mi_small_page_size;
+pub var mi_medium_pages_per_segment = mi_segment_size / mi_medium_page_size;
+pub var mi_large_pages_per_segment = mi_segment_size / mi_large_page_size;
+
+pub var mi_small_obj_size_max = mi_small_page_size / 4;
+pub var mi_medium_obj_size_max = mi_medium_page_size / 4;
+pub var mi_large_obj_size_max = mi_large_page_size / 4;
+pub var mi_large_obj_wsize_max = mi_large_obj_size_max / mi_intptr_size;
+pub var mi_huge_obj_size_max = 2 * mi_intptr_size * mi_sigment_size;
+
+pub var mi_bin_huge = 73;
+
+if (mi_large_obj_wsize_max >= 655360) {
+    // throw build error
+}
+
+pub var mi_huge_block_size = @as(u32, mi_huge_obj_size_max);
+
+// end
+
 const mi_encoded_t = usize;
 
 pub const mi_block_t = mi_block_e;
