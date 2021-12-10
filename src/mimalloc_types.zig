@@ -148,6 +148,13 @@ const mi_segment_s = struct {
     pages: [1]mi_page_t,
 };
 
+pub const mi_page_queue_t = mi_page_queue_s;
+const mi_page_queue_s = struct {
+    first: [*]mi_page_t,
+    last: [*]mi_page_t,
+    block_size: usize,
+};
+
 pub const mi_random_ctx_t = mi_random_ctx_s;
 const mi_random_ctx_s = struct {
     input: [16]u32,
