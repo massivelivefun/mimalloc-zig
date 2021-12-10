@@ -67,7 +67,50 @@ const mi_delayed_e = enum {
     mi_never_delayed_free,
 };
 
+pub var mi_page_flags_t = mi_page_flags_s;
+// this union needs a bitfield version
+const mi_page_flags_s = union {
+    full_aligned: u8,
+    x = struct {
+        in_full: u8,
+        has_aligned: u8,
+    },
+};
+
 const mi_thread_free_t = usize;
+
+pub const mi_page_t = mi_page_s;
+const mi_page_s = struct {
+    segment_idx: u8,
+    // start: u8 bitfield
+    segment_in_use: u8,
+    is_reset: u8,
+    is_committed: u8,
+    is_zero_init: u8,
+    // end
+
+    capacity: u16,
+    reserved: u16,
+    flags: mi_page_flags_t,
+    // start: u8 bitfield
+    is_zero: u8, // : 1
+    retire_expire: u8 // : 7
+    // end
+
+    free: [*]mi_block_t,
+    // start: need additional mi_encode_freelist version struct
+    keys: [2]usize,
+    // end
+    used: u32,
+    xblock_size: u32,
+
+    local_free: [*]mi_block_t,
+    xthread_free: mi_thread_free_t, // type needs to be wrapped in _Atomic zig equiv
+    xheap: usize, // type needs to be wrapped in _Atomic zig equiv
+
+    next: [*]mi_page_s,
+    prev: [*]mi_page_s,
+};
 
 pub const mi_page_kind_t = mi_page_kind_e;
 const mi_page_kind_e = enum {
