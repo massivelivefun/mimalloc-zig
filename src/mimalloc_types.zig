@@ -204,8 +204,8 @@ const mi_stat_count_s = struct {
 
 pub const mi_stat_counter_t = mi_stat_counter_s;
 const mi_stat_counter_s = struct {
-    total: isize,
-    count: isize,
+    total: i64,
+    count: i64,
 };
 
 pub const mi_stats_t = mi_stats_s;
