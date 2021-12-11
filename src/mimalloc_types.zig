@@ -242,6 +242,12 @@ const mi_stats_s = struct {
 
 pub const mi_msecs_t = i64;
 
+pub const mi_segment_queue_t = mi_segment_queue_s;
+const mi_segment_queue_s = struct {
+    first: *mi_segment_t,
+    last: *mi_segment_t,
+};
+
 pub const mi_tld_t = mi_tld_s;
 const mi_tld_s = struct {
     heartbeat: c_ulonglong,
