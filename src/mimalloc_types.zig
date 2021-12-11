@@ -196,10 +196,10 @@ const mi_heap_s = struct {
 
 pub const mi_stat_count_t = mi_stat_count_s;
 const mi_stat_count_s = struct {
-    allocated: isize,
-    freed: isize,
-    peak: isize,
-    current: isize,
+    allocated: i64,
+    freed: i64,
+    peak: i64,
+    current: i64,
 };
 
 pub const mi_stat_counter_t = mi_stat_counter_s;
