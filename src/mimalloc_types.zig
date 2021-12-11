@@ -208,6 +208,36 @@ const mi_stat_counter_s = struct {
     count: isize,
 };
 
+pub const mi_stats_t = mi_stats_s;
+const mi_stats_s = struct {
+    segments: mi_stat_count_t,
+    pages: mi_stat_count_t,
+    reserved: mi_stat_count_t,
+    committed: mi_stat_count_t,
+    reset: mi_stat_count_t,
+    page_committed: mi_stat_count_t,
+    segments_abandoned: mi_stat_count_t,
+    pages_abandoned: mi_stat_count_t,
+    threads: mi_stat_count_t,
+    normal: mi_stat_count_t,
+    huge: mi_stat_count_t,
+    giant: mi_stat_count_t,
+    malloc: mi_stat_count_t,
+    segments_cache: mi_stat_count_t,
+    pages_extended: mi_stat_counter_t,
+    mmap_calls: mi_stat_counter_t,
+    commit_calls: mi_stat_counter_t,
+    page_no_retire: mi_stat_counter_t,
+    searches: mi_stat_counter_t,
+    normal_count: mi_stat_counter_t,
+    huge_count: mi_stat_counter_t,
+    giant_count: mi_stat_counter_t,
+    // need to probably make another struct and make the build.zig wrap this
+    // start: if MI_STAT > 1
+    // normal_bins: [mi_bin_huge + 1]mi_stat_count_t
+    // end
+};
+
 pub const mi_tld_t = mi_tld_s;
 const mi_tld_s = struct {
     heartbeat: c_ulonglong,
