@@ -182,7 +182,7 @@ const mi_heap_s = struct {
     tld: *mi_tld_t,
     page: [mi_pages_direct]*mi_page_t,
     mi_page_queue: [mi_bin_full + 1]mi_page_queue_t,
-    thread_delayed_free: *mi_block_t,
+    thread_delayed_free: *mi_block_t,   // type needs to be _Atomic
     thread_id: usize,
     cookie: usize,
     keys: [2]usize,
