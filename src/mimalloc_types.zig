@@ -254,6 +254,22 @@ const mi_os_tld_s = struct {
     stats: *mi_stats_t,
 };
 
+pub const mi_segments_tld_t = mi_segments_tld_s;
+const mi_segments_tld_s = struct {
+    small_free: mi_segment_queue_t,
+    medium_free: mi_segment_queue_t,
+    pages_reset: mi_page_queue_t,
+    count: usize,
+    peak_count: usize,
+    current_size: usize,
+    peak_size: usize,
+    cache_count: usize,
+    cache_size: usize,
+    cache: *mi_segment_t,
+    stats: *mi_stats_t,
+    os: *mi_os_tld_t,
+};
+
 pub const mi_tld_t = mi_tld_s;
 const mi_tld_s = struct {
     heartbeat: c_ulonglong,
