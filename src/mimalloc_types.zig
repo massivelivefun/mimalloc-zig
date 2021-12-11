@@ -274,8 +274,8 @@ pub const mi_tld_t = mi_tld_s;
 const mi_tld_s = struct {
     heartbeat: c_ulonglong,
     recurse: bool,
-    heap_backing: [*]mi_heap_t,
-    heaps: [*]mi_heap_t,
+    heap_backing: *mi_heap_t,
+    heaps: *mi_heap_t,
     os: mi_os_tld_t,
     stats: mi_stats_t,
 };
