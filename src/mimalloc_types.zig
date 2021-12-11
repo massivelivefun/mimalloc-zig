@@ -248,6 +248,12 @@ const mi_segment_queue_s = struct {
     last: *mi_segment_t,
 };
 
+pub const mi_os_tld_t = mi_os_tld_s;
+const mi_os_tld_s = struct {
+    region_idx: usize,
+    stats: *mi_stats_t,
+};
+
 pub const mi_tld_t = mi_tld_s;
 const mi_tld_s = struct {
     heartbeat: c_ulonglong,
