@@ -238,6 +238,10 @@ const mi_stats_s = struct {
     // end
 };
 
+// A bunch of function wrappers based on macros
+
+pub const mi_msecs_t = i64;
+
 pub const mi_tld_t = mi_tld_s;
 const mi_tld_s = struct {
     heartbeat: c_ulonglong,
