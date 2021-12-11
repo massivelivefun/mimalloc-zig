@@ -97,19 +97,19 @@ const mi_page_s = struct {
     retire_expire: u8 // : 7
     // end
 
-    free: [*]mi_block_t,
+    free: *mi_block_t,
     // start: need additional mi_encode_freelist version struct
     keys: [2]usize,
     // end
     used: u32,
     xblock_size: u32,
 
-    local_free: [*]mi_block_t,
+    local_free: *mi_block_t,
     xthread_free: mi_thread_free_t, // type needs to be wrapped in _Atomic zig equiv
     xheap: usize, // type needs to be wrapped in _Atomic zig equiv
 
-    next: [*]mi_page_s,
-    prev: [*]mi_page_s,
+    next: *mi_page_s,
+    prev: *mi_page_s,
 };
 
 pub const mi_page_kind_t = mi_page_kind_e;
@@ -128,9 +128,9 @@ const mi_segment_s = struct {
     mem_is_committed: bool,
 
     // segment fields
-    abandoned_next: [*]mi_segment_s, // type needs to be _Atomic
-    next: [*]mi_segment_s,
-    prev: [*]mi_segment_s,
+    abandoned_next: *mi_segment_s, // type needs to be _Atomic
+    next: *mi_segment_s,
+    prev: *mi_segment_s,
 
     abandoned: usize,
     abandoned_visits: usize,
@@ -150,8 +150,8 @@ const mi_segment_s = struct {
 
 pub const mi_page_queue_t = mi_page_queue_s;
 const mi_page_queue_s = struct {
-    first: [*]mi_page_t,
-    last: [*]mi_page_t,
+    first: *mi_page_t,
+    last: *mi_page_t,
     block_size: usize,
 };
 
